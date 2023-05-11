@@ -19,9 +19,14 @@ const userSchema = new mongoose.Schema({
     password: String
 });
 
-/*** Encryption requires a secret key and also decryption at the time of retrieving.
- *  Hence hashing is preferred. (cannot be converted to plain text.) */
-//userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ['password']});
+/****
+ * Level 0  - Encryption using "mongoose-encryption"
+ *      // userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ['password']});
+ * Down-side: encryption involves a secret key and also decryption for retrieving.
+ * 
+ * Level 1 - Hashing using "md5"
+ *  
+ */
 
 const User = mongoose.model("User", userSchema);
 
